@@ -19,7 +19,7 @@ $ tar -xvzf YelpDataset.tar.gz
 ```
 Bring up the Oracle database:
 ```
-$ docker run -d -p 1521:1521 epiclabs/docker-oracle-xe-11g
+$ docker run --name oracledb --rm -d -p 1521:1521 epiclabs/docker-oracle-xe-11g
 ```
 Initialize the database with the necessary tables/indices (default username/pw is system/oracle):
 ```
@@ -38,4 +38,5 @@ $ java -jar dist/YelpGUI.jar
 Delete the database:
 ```
 $ sqlplus ${user}/${pass} @dropdb.sql
+$ docker kill oracledb
 ```
